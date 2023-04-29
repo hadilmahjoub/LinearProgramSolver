@@ -1,0 +1,38 @@
+.ant-collapse-item {
+    margin: 20px 0;
+    width: 100% !important;
+}
+
+.ant-collapse-header {
+    background: rgb(0, 112, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(0, 112, 255, 1) 0%,
+        rgba(65, 168, 189, 1) 100%
+    );
+    border-radius: 10px !important;
+    margin-bottom: 5px;
+}
+
+.ant-collapse-header:hover {
+    background: linear-gradient(
+        90deg,
+        rgb(0, 87, 201) 0%,
+        rgb(37, 151, 173) 100%
+    );
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ant-collapse-header-text {
+    color: white;
+    width: 80vw;
+}
+
+.ant-collapse-expand-icon {
+    color: white;
+}
+
+.ant-collapse-content {
+    border-radius: 10px !important ;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
