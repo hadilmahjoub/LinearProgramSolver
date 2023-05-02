@@ -11,6 +11,104 @@ const PL6 = () => {
 
     const tableColumns1 = [
         {
+            title: "Usine",
+            dataIndex: "usine",
+            key: "usine",
+        },
+        {
+            title: "A",
+            dataIndex: "a",
+            key: "a",
+        },
+        {
+            title: "B",
+            dataIndex: "b",
+            key: "b",
+        },
+        {
+            title: "C",
+            dataIndex: "c",
+            key: "c",
+        },
+    ];
+
+    const tableData1 = [
+        {
+            key: "1",
+            usine: "Capacité de production annuelle (tonnes)",
+            a: (
+                <Form.Item name="form8-A" initialValue={200}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            b: (
+                <Form.Item name="form8-B" initialValue={300}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form8-C" initialValue={100}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+        },
+        {
+            key: "2",
+            usine: "Cout de production",
+            a: (
+                <Form.Item name="form9-A" initialValue={1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            b: (
+                <Form.Item name="form9-B" initialValue={1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form9-C" initialValue={1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+        },
+    ];
+    const tableColumns2 = [
+        {
+            title: "Client",
+            dataIndex: "client",
+            key: "client",
+        },
+        {
+            title: "E",
+            dataIndex: "e",
+            key: "e",
+        },
+        {
+            title: "F",
+            dataIndex: "f",
+            key: "f",
+        },
+    ];
+
+    const tableData2 = [
+        {
+            key: "1",
+            client: "Demandes annuelles (tonnes)",
+            e: (
+                <Form.Item name="form-10-E" initialValue={400}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            f: (
+                <Form.Item name="form-10-F" initialValue={180}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+        },
+    ];
+
+    const tableColumns3 = [
+        {
             title: "Transport",
             dataIndex: "transport",
             key: "transport",
@@ -47,39 +145,39 @@ const PL6 = () => {
         },
     ];
 
-    const tableData1 = [
+    const tableData3 = [
         {
             key: "1",
             transport: "A",
             a: "-",
             b: (
                 <Form.Item name="form1-B" initialValue={5}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             c: (
                 <Form.Item name="form1-C" initialValue={3}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d1: (
                 <Form.Item name="form1-D1" initialValue={5}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d2: (
                 <Form.Item name="form1-D2" initialValue={5}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             e: (
                 <Form.Item name="form1-E" initialValue={20}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: (
                 <Form.Item name="form1-F" initialValue={20}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -88,33 +186,33 @@ const PL6 = () => {
             transport: "B",
             a: (
                 <Form.Item name="form2-A" initialValue={9}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             b: "-",
             c: (
                 <Form.Item name="form2-C" initialValue={9}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d1: (
                 <Form.Item name="form2-D1" initialValue={1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d2: (
                 <Form.Item name="form2-D2" initialValue={1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             e: (
                 <Form.Item name="form2-E" initialValue={8}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: (
                 <Form.Item name="form2-F" initialValue={15}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -123,33 +221,33 @@ const PL6 = () => {
             transport: "C",
             a: (
                 <Form.Item name="form3-A" initialValue={0.4}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             b: (
                 <Form.Item name="form3-B" initialValue={8}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             c: "-",
             d1: (
                 <Form.Item name="form3-D1" initialValue={1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d2: (
                 <Form.Item name="form3-D2" initialValue={0.5}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             e: (
                 <Form.Item name="form3-E" initialValue={10}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: (
                 <Form.Item name="form3-F" initialValue={12}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -162,17 +260,17 @@ const PL6 = () => {
             d1: "-",
             d2: (
                 <Form.Item name="form4-D2" initialValue={1.2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             e: (
                 <Form.Item name="form4-E" initialValue={2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: (
                 <Form.Item name="form4-F" initialValue={12}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -184,18 +282,18 @@ const PL6 = () => {
             c: "-",
             d1: (
                 <Form.Item name="form5-D1" initialValue={0.8}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             d2: "-",
             e: (
                 <Form.Item name="form5-E" initialValue={2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: (
                 <Form.Item name="form5-F" initialValue={12}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -210,7 +308,7 @@ const PL6 = () => {
             e: "-",
             f: (
                 <Form.Item name="form6-F" initialValue={1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -224,7 +322,7 @@ const PL6 = () => {
             d2: "-",
             e: (
                 <Form.Item name="form7-F" initialValue={7}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             f: "-",
@@ -236,10 +334,21 @@ const PL6 = () => {
             col: tableColumns1,
             data: tableData1,
         },
+        {
+            col: tableColumns2,
+            data: tableData2,
+        },
+        {
+            col: tableColumns3,
+            data: tableData3,
+        },
     ];
 
     const onFinish = (values) => {
         const request = {
+            capacite_usine: [],
+            cout_usine: [],
+            demande_client: [],
             rowA: [],
             rowB: [],
             rowC: [],
@@ -276,6 +385,17 @@ const PL6 = () => {
             if (key.includes("form7")) {
                 request.rowF.push(value);
             }
+            if (key.includes("form8")) {
+                request.capacite_usine.push(value);
+            }
+
+            if (key.includes("form9")) {
+                request.cout_usine.push(value);
+            }
+
+            if (key.includes("form-10")) {
+                request.demande_client.push(value);
+            }
         }
 
         console.log(request);
@@ -296,6 +416,16 @@ const PL6 = () => {
                         <Table
                             dataSource={tables[0].data}
                             columns={tables[0].col}
+                            pagination={false}
+                        />
+                        <Table
+                            dataSource={tables[1].data}
+                            columns={tables[1].col}
+                            pagination={false}
+                        />
+                        <Table
+                            dataSource={tables[2].data}
+                            columns={tables[2].col}
                             pagination={false}
                         />
                         <div className="btns-container">

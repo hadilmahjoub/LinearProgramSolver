@@ -48,27 +48,27 @@ const PL1 = () => {
             ressource: "Rendement Q/ha",
             ble: (
                 <Form.Item name="form1-ble" initialValue={75}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form1-orge" initialValue={60}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form1-mais" initialValue={55}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form1-bet-sucre" initialValue={50}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form1-tournesol" initialValue={60}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -78,27 +78,27 @@ const PL1 = () => {
             ressource: "Prix de vente UM/Q",
             ble: (
                 <Form.Item name="form2-ble" initialValue={60}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form2-orge" initialValue={50}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form2-mais" initialValue={66}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form2-bet-sucre" initialValue={110}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form2-tournesol" initialValue={60}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -108,27 +108,27 @@ const PL1 = () => {
             ressource: "M.O.Ouvriers/ha",
             ble: (
                 <Form.Item name="form3-ble" initialValue={2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form3-orge" initialValue={1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form3-mais" initialValue={2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form3-bet-sucre" initialValue={3}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form3-tournesol" initialValue={2}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -138,27 +138,27 @@ const PL1 = () => {
             ressource: "Temps machine H/ha",
             ble: (
                 <Form.Item name="form4-ble" initialValue={30}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form4-orge" initialValue={24}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form4-mais" initialValue={20}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form4-bet-sucre" initialValue={28}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form4-tournesol" initialValue={25}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -167,27 +167,27 @@ const PL1 = () => {
             ressource: "Eau m3/ha",
             ble: (
                 <Form.Item name="form5-ble" initialValue={3000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form5-orge" initialValue={2000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form5-mais" initialValue={2500}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form5-bet-sucre" initialValue={3800}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form5-tournesol" initialValue={3200}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -196,27 +196,27 @@ const PL1 = () => {
             ressource: "Salaire annuel/ouvrier",
             ble: (
                 <Form.Item name="form6-ble" initialValue={500}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form6-orge" initialValue={500}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form6-mais" initialValue={600}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form6-bet-sucre" initialValue={700}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form6-tournesol" initialValue={550}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -225,27 +225,27 @@ const PL1 = () => {
             ressource: "Frais fixe de gestion",
             ble: (
                 <Form.Item name="form7-ble" initialValue={250}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             orge: (
                 <Form.Item name="form7-orge" initialValue={180}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             mais: (
                 <Form.Item name="form7-mais" initialValue={190}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             bet_sucre: (
                 <Form.Item name="form7-bet-sucre" initialValue={310}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             tournesol: (
                 <Form.Item name="form7-tournesol" initialValue={320}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
         },
@@ -278,34 +278,34 @@ const PL1 = () => {
         {
             zone_agricole: (
                 <Form.Item name="form8-zone-agricole" initialValue={1000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             main_oeuvre: (
                 <Form.Item name="form8-main-oeuvre" initialValue={3000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             eau: (
                 <Form.Item name="form8-eau" initialValue={25000000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             heures_machine: (
                 <Form.Item name="form8-heures-machine" initialValue={24000}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             cout_heure_machine: (
                 <Form.Item name="form8-cout-heure-machine" initialValue={30}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
             ),
             cout_eau: (
                 <Form.Item name="form8-eau" initialValue={0.1}>
-                    <Input />
+                    <Input type="number" />
                 </Form.Item>
-            )
+            ),
         },
     ];
 

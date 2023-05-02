@@ -58,37 +58,37 @@ const PL3 = () => {
                 jour: "Minimum requis",
                 lundi: (
                     <Form.Item name="form1-lun" initialValue={17}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ), //17
                 mardi: (
                     <Form.Item name="form1-mar" initialValue={13}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ), //13
                 mercredi: (
                     <Form.Item name="form1-mer" initialValue={15}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ), //15
                 jeudi: (
                     <Form.Item name="form1-jeu" initialValue={19}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ), //50,
                 vendredi: (
                     <Form.Item name="form1-ven" initialValue={14}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ), //60,
                 samedi: (
                     <Form.Item name="form1-sam" initialValue={16}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ),
                 dimanche: (
                     <Form.Item name="form1-dim" initialValue={11}>
-                        <Input />
+                        <Input type="number" />
                     </Form.Item>
                 ),
             },
