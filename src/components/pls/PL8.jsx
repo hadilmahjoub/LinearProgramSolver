@@ -629,7 +629,6 @@ const PL8 = () => {
 
     const onFinish = (values) => {
         const request = {
-            //todo to complete-----------------
             path: [],
         };
 
@@ -645,7 +644,6 @@ const PL8 = () => {
         const v10 = [];
 
         for (const [key, value] of Object.entries(values)) {
-            //todo to complete-----------------
             if (key.includes("form1")) {
                 v1.push(value);
             }
@@ -683,16 +681,16 @@ const PL8 = () => {
             }
         }
 
-        request.path.push(v1)
-        request.path.push(v2)
-        request.path.push(v3)
-        request.path.push(v4)
-        request.path.push(v5)
-        request.path.push(v6)
-        request.path.push(v7)
-        request.path.push(v8)
-        request.path.push(v9)
-        request.path.push(v10)
+        request.path.push(v1);
+        request.path.push(v2);
+        request.path.push(v3);
+        request.path.push(v4);
+        request.path.push(v5);
+        request.path.push(v6);
+        request.path.push(v7);
+        request.path.push(v8);
+        request.path.push(v9);
+        request.path.push(v10);
 
         console.log(request.path);
 

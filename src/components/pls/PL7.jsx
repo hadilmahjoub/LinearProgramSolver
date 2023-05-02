@@ -352,7 +352,6 @@ const PL7 = () => {
         const e6 = [];
 
         for (const [key, value] of Object.entries(values)) {
-            //todo to complete-----------------
             if (key.includes("form1")) {
                 e1.push(value);
             }

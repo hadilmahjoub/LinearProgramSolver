@@ -420,7 +420,6 @@ const PL9 = () => {
 
     const onFinish = (values) => {
         const request = {
-            //todo to complete-----------------
             usine_depot: [],
             depot_client: [],
             offre_usine: [],

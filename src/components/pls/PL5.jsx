@@ -287,11 +287,13 @@ const PL5 = () => {
         const request = {
             centrales_offres: [],
             villes_demande: [],
-            centrale1_villes: [],
-            centrale2_villes: [],
-            centrale3_villes: [],
+            centrales_villes: [],
             penalite_villes: [],
         };
+
+        const centrale1_villes = [];
+        const centrale2_villes = [];
+        const centrale3_villes = [];
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
@@ -303,20 +305,24 @@ const PL5 = () => {
             }
 
             if (key.includes("form3")) {
-                request.centrale1_villes.push(value);
+                centrale1_villes.push(value);
             }
             if (key.includes("form4")) {
-                request.centrale2_villes.push(value);
+                centrale2_villes.push(value);
             }
 
             if (key.includes("form5")) {
-                request.centrale3_villes.push(value);
+                centrale3_villes.push(value);
             }
 
             if (key.includes("form6")) {
                 request.penalite_villes.push(value);
             }
         }
+
+        request.centrales_villes.push(centrale1_villes);
+        request.centrales_villes.push(centrale2_villes);
+        request.centrales_villes.push(centrale3_villes);
 
         console.log(request);
     };

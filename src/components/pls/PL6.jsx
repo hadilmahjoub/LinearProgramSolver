@@ -349,41 +349,43 @@ const PL6 = () => {
             capacite_usine: [],
             cout_usine: [],
             demande_client: [],
-            rowA: [],
-            rowB: [],
-            rowC: [],
-            rowD1: [],
-            rowD2: [],
-            rowE: [],
-            rowF: [],
+            matrice: [],
         };
+
+        const rowA = [];
+        const rowB = [];
+        const rowC = [];
+        const rowD1 = [];
+        const rowD2 = [];
+        const rowE = [];
+        const rowF = [];
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                request.rowA.push(value);
+                rowA.push(value);
             }
 
             if (key.includes("form2")) {
-                request.rowB.push(value);
+                rowB.push(value);
             }
 
             if (key.includes("form3")) {
-                request.rowC.push(value);
+                rowC.push(value);
             }
             if (key.includes("form4")) {
-                request.rowD1.push(value);
+                rowD1.push(value);
             }
 
             if (key.includes("form5")) {
-                request.rowD2.push(value);
+                rowD2.push(value);
             }
 
             if (key.includes("form6")) {
-                request.rowE.push(value);
+                rowE.push(value);
             }
 
             if (key.includes("form7")) {
-                request.rowF.push(value);
+                rowF.push(value);
             }
             if (key.includes("form8")) {
                 request.capacite_usine.push(value);
@@ -397,6 +399,14 @@ const PL6 = () => {
                 request.demande_client.push(value);
             }
         }
+
+        request.matrice.push(rowA);
+        request.matrice.push(rowB);
+        request.matrice.push(rowC);
+        request.matrice.push(rowD1);
+        request.matrice.push(rowD2);
+        request.matrice.push(rowE);
+        request.matrice.push(rowF);
 
         console.log(request);
     };
