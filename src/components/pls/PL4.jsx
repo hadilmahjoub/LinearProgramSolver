@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -66,7 +67,7 @@ const PL4 = () => {
                 </Form.Item>
             ),
             stock_cout: (
-                <Form.Item name="form3-cout2" initialValue={0}>
+                <Form.Item name="form3-cout2" initialValue={3}>
                     <Input type="number" />
                 </Form.Item>
             ),
@@ -85,7 +86,7 @@ const PL4 = () => {
                 </Form.Item>
             ),
             stock_cout: (
-                <Form.Item name="form3-cout3" initialValue={0}>
+                <Form.Item name="form3-cout3" initialValue={3}>
                     <Input type="number" />
                 </Form.Item>
             ),
@@ -104,7 +105,7 @@ const PL4 = () => {
                 </Form.Item>
             ),
             stock_cout: (
-                <Form.Item name="form3-cout4" initialValue={0}>
+                <Form.Item name="form3-cout4" initialValue={3}>
                     <Input type="number" />
                 </Form.Item>
             ),
@@ -193,6 +194,44 @@ const PL4 = () => {
             ),
         },
     ];
+    const tableColumns4 = [
+        {
+            title: "Volume horaire mensuel de travail par ouvrier",
+            dataIndex: "volume_horaire",
+            key: "volume_horaire",
+        },
+        {
+            title: "Frais de Recrutement d'un ouvrier",
+            dataIndex: "frais_recrut",
+            key: "frais_recrut",
+        },
+        {
+            title: "Frais de licenciement d'un ouvrier",
+            dataIndex: "frais_licenc",
+            key: "frais_licenc",
+        },
+    ];
+
+    const tableData4 = [
+        {
+            key: "1",
+            volume_horaire: (
+                <Form.Item name="form8-1" initialValue={160}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            frais_recrut: (
+                <Form.Item name="form8-2" initialValue={1600}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            frais_licenc: (
+                <Form.Item name="form8-3" initialValue={2000}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+        },
+    ];
 
     const tables = [
         {
@@ -207,9 +246,13 @@ const PL4 = () => {
             col: tableColumns3,
             data: tableData3,
         },
+        {
+            col: tableColumns4,
+            data: tableData4,
+        },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             mois: [1, 2, 3, 4],
             demande: [],
@@ -218,39 +261,51 @@ const PL4 = () => {
             ouvriers: [],
             heures_supp: [],
             produit: [],
+            VhRL: [],
         };
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                request.demande.push(value);
+                request.demande.push(parseInt(value));
             }
 
             if (key.includes("form2")) {
-                request.stock_initial.push(value);
+                request.stock_initial.push(parseInt(value));
             }
 
             if (key.includes("form3")) {
-                request.stock_cout.push(value);
+                request.stock_cout.push(parseInt(value));
             }
 
             if (key.includes("form4")) {
-                request.stock_initial.push(value);
+                request.stock_initial.push(parseInt(value));
             }
             if (key.includes("form5")) {
-                request.ouvriers.push(value);
+                request.ouvriers.push(parseInt(value));
             }
 
             if (key.includes("form6")) {
-                request.heures_supp.push(value);
+                request.heures_supp.push(parseInt(value));
             }
 
             if (key.includes("form7")) {
-                request.produit.push(value);
+                request.produit.push(parseInt(value));
+            }
+
+            if (key.includes("form8")) {
+                request.VhRL.push(parseInt(value));
             }
         }
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl4");
+        setResult(final_result.res4);
+
+        console.log(final_result);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -279,6 +334,11 @@ const PL4 = () => {
                             columns={tables[2].col}
                             pagination={false}
                         />
+                        <Table
+                            dataSource={tables[3].data}
+                            columns={tables[3].col}
+                            pagination={false}
+                        />
 
                         <div className="btns-container">
                             <Form.Item>
@@ -288,6 +348,44 @@ const PL4 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    <h2>Solution optimale</h2><br />
+                                    <h3>MOIS 1</h3>
+                                    {Object.entries(result.mois1).map(
+                                        (item, index) => (
+                                            <div>{item[1]}</div>
+                                        )
+                                    )}
+                                    <br />
+                                    <h3>MOIS 2</h3>
+                                    {Object.entries(result.mois2).map(
+                                        (item, index) => (
+                                            <div>{item[1]}</div>
+                                        )
+                                    )}
+                                    <br />
+                                    <h3>MOIS 3</h3>
+                                    {Object.entries(result.mois3).map(
+                                        (item, index) => (
+                                            <div>{item[1]}</div>
+                                        )
+                                    )}
+                                    <br />
+                                    <h3>MOIS 4</h3>
+                                    {Object.entries(result.mois4).map(
+                                        (item, index) => (
+                                            <div>{item[1]}</div>
+                                        )
+                                    )}
+                                    <br />
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

@@ -1,6 +1,7 @@
-import React from "react";
-import { Collapse, Table, Button, Form, Input } from "antd";
+import React, { useState } from "react";
+import { Collapse, Table, Button, Form, Input, Spin } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -272,6 +273,16 @@ const PL1 = () => {
             dataIndex: "heures_machine",
             key: "heures_machine",
         },
+        {
+            title: "Cout heure machine",
+            dataIndex: "cout_heure_machine",
+            key: "cout_heure_machine",
+        },
+        {
+            title: "Cout metre cube eau",
+            dataIndex: "cout_eau",
+            key: "cout_eau",
+        },
     ];
 
     const tableData2 = [
@@ -302,7 +313,7 @@ const PL1 = () => {
                 </Form.Item>
             ),
             cout_eau: (
-                <Form.Item name="form8-eau" initialValue={0.1}>
+                <Form.Item name="form8-cout-eau" initialValue={0.1}>
                     <Input type="number" />
                 </Form.Item>
             ),
@@ -320,7 +331,8 @@ const PL1 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
+        setloading(true);
         const request = {
             Rd: [],
             Pv: [],
@@ -334,39 +346,47 @@ const PL1 = () => {
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                request.Rd.push(value);
+                request.Rd.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form2")) {
-                request.Pv.push(value);
+                request.Pv.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form3")) {
-                request.MO.push(value);
+                request.MO.push(parseFloat(parseFloat(value)));
             }
             if (key.includes("form4")) {
-                request.M.push(value);
+                request.M.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form5")) {
-                request.E.push(value);
+                request.E.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form6")) {
-                request.S.push(value);
+                request.S.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form7")) {
-                request.F.push(value);
+                request.F.push(parseFloat(parseFloat(value)));
             }
 
             if (key.includes("form8")) {
-                request.autres.push(value);
+                request.autres.push(parseFloat(parseFloat(value)));
             }
         }
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl1");
+        setResult(final_result.res1);
+
+        setloading(false);
     };
+
+    const [result, setResult] = useState(null);
+    const [loading, setloading] = useState(false);
 
     return (
         <Collapse className="collpase">
@@ -381,11 +401,13 @@ const PL1 = () => {
                         autoComplete="off"
                     >
                         <Table
+                            key={1}
                             dataSource={tables1[0].data}
                             columns={tables1[0].col}
                             pagination={false}
                         />
                         <Table
+                            key={2}
                             dataSource={tables1[1].data}
                             columns={tables1[1].col}
                             pagination={false}
@@ -398,6 +420,23 @@ const PL1 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    {Object.entries(result).map(
+                                        (item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    {item[0]} : {item[1]}
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

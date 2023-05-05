@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -133,7 +134,7 @@ const PL2 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             quantite: [],
             qualite: [],
@@ -143,24 +144,29 @@ const PL2 = () => {
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                request.quantite.push(value);
+                request.quantite.push(parseFloat(value));
             }
 
             if (key.includes("form2")) {
-                request.qualite.push(value);
+                request.qualite.push(parseFloat(value));
             }
 
             if (key.includes("form3")) {
-                request.gazoline.push(value);
+                request.gazoline.push(parseFloat(value));
             }
 
             if (key.includes("form4")) {
-                request.chauffage.push(value);
+                request.chauffage.push(parseFloat(value));
             }
         }
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl2");
+        setResult(final_result.res2);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -193,6 +199,25 @@ const PL2 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    <h2>Mixage optimal</h2>
+                                    {Object.entries(result).map(
+                                        (item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    {item[0]} : {item[1]}
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

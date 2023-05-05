@@ -134,6 +134,11 @@ const PL6 = () => {
             key: "d1",
         },
         {
+            title: "D2",
+            dataIndex: "d2",
+            key: "d2",
+        },
+        {
             title: "E",
             dataIndex: "e",
             key: "e",

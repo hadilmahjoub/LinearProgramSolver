@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -283,7 +284,7 @@ const PL5 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             centrales_offres: [],
             villes_demande: [],
@@ -325,8 +326,15 @@ const PL5 = () => {
         request.centrales_villes.push(centrale3_villes);
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl5");
+        setResult(final_result.res5);
+
+        console.log(final_result);
     };
 
+    const [result, setResult] = useState(null);
+    
     return (
         <Collapse className="collpase">
             <Panel header={title}>
@@ -367,6 +375,26 @@ const PL5 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    {
+                                        console.log(result)
+                                    }
+                                    {Object.entries(result).map(
+                                        (item, index) => {
+                                            console.log(item[1]);
+                                            return (
+                                                <div key={index}>{item[1]}</div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -53,63 +54,70 @@ const PL3 = () => {
                     key: "dimanche",
                 },
             ],
-            data: {
-                key: "1",
-                jour: "Minimum requis",
-                lundi: (
-                    <Form.Item name="form1-lun" initialValue={17}>
-                        <Input type="number" />
-                    </Form.Item>
-                ), //17
-                mardi: (
-                    <Form.Item name="form1-mar" initialValue={13}>
-                        <Input type="number" />
-                    </Form.Item>
-                ), //13
-                mercredi: (
-                    <Form.Item name="form1-mer" initialValue={15}>
-                        <Input type="number" />
-                    </Form.Item>
-                ), //15
-                jeudi: (
-                    <Form.Item name="form1-jeu" initialValue={19}>
-                        <Input type="number" />
-                    </Form.Item>
-                ), //50,
-                vendredi: (
-                    <Form.Item name="form1-ven" initialValue={14}>
-                        <Input type="number" />
-                    </Form.Item>
-                ), //60,
-                samedi: (
-                    <Form.Item name="form1-sam" initialValue={16}>
-                        <Input type="number" />
-                    </Form.Item>
-                ),
-                dimanche: (
-                    <Form.Item name="form1-dim" initialValue={11}>
-                        <Input type="number" />
-                    </Form.Item>
-                ),
-            },
+            data: [
+                {
+                    key: "1",
+                    jour: "Minimum requis",
+                    lundi: (
+                        <Form.Item name="form1-lun" initialValue={17}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ), //17
+                    mardi: (
+                        <Form.Item name="form1-mar" initialValue={13}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ), //13
+                    mercredi: (
+                        <Form.Item name="form1-mer" initialValue={15}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ), //15
+                    jeudi: (
+                        <Form.Item name="form1-jeu" initialValue={19}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ), //50,
+                    vendredi: (
+                        <Form.Item name="form1-ven" initialValue={14}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ), //60,
+                    samedi: (
+                        <Form.Item name="form1-sam" initialValue={16}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ),
+                    dimanche: (
+                        <Form.Item name="form1-dim" initialValue={11}>
+                            <Input type="number" />
+                        </Form.Item>
+                    ),
+                },
+            ],
         },
     ];
 
-    console.log(tables[0].col);
-
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             min_jours: [],
         };
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                request.min_jours.push(value);
+                request.min_jours.push(parseInt(value));
             }
         }
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl3");
+        setResult(final_result.res3);
+
+        console.log(final_result);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -143,6 +151,25 @@ const PL3 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    {Object.entries(result).map(
+                                        (item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    {item}
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                    
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>
