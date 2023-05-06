@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -106,6 +107,24 @@ const PL6 = () => {
             ),
         },
     ];
+    const tableColumns4 = [
+        {
+            title: "Quantite de transport maximale entre deux nœuds",
+            dataIndex: "quantite_trans",
+            key: "quantite_trans",
+        },
+    ];
+
+    const tableData4 = [
+        {
+            key: "1",
+            quantite_trans: (
+                <Form.Item name="form-11-transport" initialValue={200}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+        },
+    ];
 
     const tableColumns3 = [
         {
@@ -154,7 +173,11 @@ const PL6 = () => {
         {
             key: "1",
             transport: "A",
-            a: "-",
+            a: (
+                <Form.Item name="form1-A" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             b: (
                 <Form.Item name="form1-B" initialValue={5}>
                     <Input type="number" />
@@ -194,7 +217,11 @@ const PL6 = () => {
                     <Input type="number" />
                 </Form.Item>
             ),
-            b: "-",
+            b: (
+                <Form.Item name="form2-B" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             c: (
                 <Form.Item name="form2-C" initialValue={9}>
                     <Input type="number" />
@@ -234,7 +261,11 @@ const PL6 = () => {
                     <Input type="number" />
                 </Form.Item>
             ),
-            c: "-",
+            c: (
+                <Form.Item name="form3-C" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             d1: (
                 <Form.Item name="form3-D1" initialValue={1}>
                     <Input type="number" />
@@ -259,10 +290,26 @@ const PL6 = () => {
         {
             key: "4",
             transport: "D1",
-            a: "-",
-            b: "-",
-            c: "-",
-            d1: "-",
+            a: (
+                <Form.Item name="form4-A" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            b: (
+                <Form.Item name="form4-B" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form4-C" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            d1: (
+                <Form.Item name="form4-D1" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             d2: (
                 <Form.Item name="form4-D2" initialValue={1.2}>
                     <Input type="number" />
@@ -282,15 +329,31 @@ const PL6 = () => {
         {
             key: "5",
             transport: "D2",
-            a: "-",
-            b: "-",
-            c: "-",
+            a: (
+                <Form.Item name="form5-A" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            b: (
+                <Form.Item name="form5-B" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form5-C" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
             d1: (
                 <Form.Item name="form5-D1" initialValue={0.8}>
                     <Input type="number" />
                 </Form.Item>
             ),
-            d2: "-",
+            d2: (
+                <Form.Item name="form5-D2" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             e: (
                 <Form.Item name="form5-E" initialValue={2}>
                     <Input type="number" />
@@ -305,12 +368,36 @@ const PL6 = () => {
         {
             key: "5",
             transport: "E",
-            a: "-",
-            b: "-",
-            c: "-",
-            d1: "-",
-            d2: "-",
-            e: "-",
+            a: (
+                <Form.Item name="form6-A" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            b: (
+                <Form.Item name="form6-B" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form6-C" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            d1: (
+                <Form.Item name="form6-D1" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            d2: (
+                <Form.Item name="form6-D2" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            e: (
+                <Form.Item name="form6-E" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
             f: (
                 <Form.Item name="form6-F" initialValue={1}>
                     <Input type="number" />
@@ -320,17 +407,41 @@ const PL6 = () => {
         {
             key: "6",
             transport: "F",
-            a: "-",
-            b: "-",
-            c: "-",
-            d1: "-",
-            d2: "-",
-            e: (
-                <Form.Item name="form7-F" initialValue={7}>
+            a: (
+                <Form.Item name="form7-A" initialValue={-1}>
                     <Input type="number" />
                 </Form.Item>
             ),
-            f: "-",
+            b: (
+                <Form.Item name="form7-B" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            c: (
+                <Form.Item name="form7-C" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            d1: (
+                <Form.Item name="form7-D1" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            d2: (
+                <Form.Item name="form7-D2" initialValue={-1}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            e: (
+                <Form.Item name="form7-E" initialValue={7}>
+                    <Input type="number" />
+                </Form.Item>
+            ),
+            f: (
+                <Form.Item name="form7-F" initialValue={-1}>
+                    <Input type="number" disabled />
+                </Form.Item>
+            ),
         },
     ];
 
@@ -347,14 +458,19 @@ const PL6 = () => {
             col: tableColumns3,
             data: tableData3,
         },
+        {
+            col: tableColumns4,
+            data: tableData4,
+        },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             capacite_usine: [],
             cout_usine: [],
             demande_client: [],
             matrice: [],
+            quantite_trans: [],
         };
 
         const rowA = [];
@@ -367,41 +483,45 @@ const PL6 = () => {
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                rowA.push(value);
+                rowA.push(parseFloat(value));
             }
 
             if (key.includes("form2")) {
-                rowB.push(value);
+                rowB.push(parseFloat(value));
             }
 
             if (key.includes("form3")) {
-                rowC.push(value);
+                rowC.push(parseFloat(value));
             }
             if (key.includes("form4")) {
-                rowD1.push(value);
+                rowD1.push(parseFloat(value));
             }
 
             if (key.includes("form5")) {
-                rowD2.push(value);
+                rowD2.push(parseFloat(value));
             }
 
             if (key.includes("form6")) {
-                rowE.push(value);
+                rowE.push(parseFloat(value));
             }
 
             if (key.includes("form7")) {
-                rowF.push(value);
+                rowF.push(parseFloat(value));
             }
             if (key.includes("form8")) {
-                request.capacite_usine.push(value);
+                request.capacite_usine.push(parseFloat(value));
             }
 
             if (key.includes("form9")) {
-                request.cout_usine.push(value);
+                request.cout_usine.push(parseFloat(value));
             }
 
             if (key.includes("form-10")) {
-                request.demande_client.push(value);
+                request.demande_client.push(parseFloat(value));
+            }
+
+            if (key.includes("form-11")) {
+                request.quantite_trans.push(parseFloat(value));
             }
         }
 
@@ -414,7 +534,14 @@ const PL6 = () => {
         request.matrice.push(rowF);
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl6");
+        setResult(final_result.res6);
+
+        console.log(final_result);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -428,7 +555,14 @@ const PL6 = () => {
                         // onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
-                        <Table
+                        {tables.map((tab) => (
+                            <Table
+                                dataSource={tab.data}
+                                columns={tab.col}
+                                pagination={false}
+                            />
+                        ))}
+                        {/* <Table
                             dataSource={tables[0].data}
                             columns={tables[0].col}
                             pagination={false}
@@ -443,6 +577,11 @@ const PL6 = () => {
                             columns={tables[2].col}
                             pagination={false}
                         />
+                        <Table
+                            dataSource={tables[3].data}
+                            columns={tables[3].col}
+                            pagination={false}
+                        /> */}
                         <div className="btns-container">
                             <Form.Item>
                                 <Button htmlType="submit">Solve</Button>
@@ -451,6 +590,44 @@ const PL6 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div className="col">
+                                    {Object.entries(result).map((item) => {
+                                        return (
+                                            <div>
+                                                <h2>{item[0]}</h2>
+                                                {Object.entries(item[1]).map(
+                                                    (e) => {
+                                                        return (
+                                                            <div>
+                                                                {e[0]} : {e[1]}
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                    {/* <div>
+                                        <h2>A</h2>
+                                        {Object.entries(result.matrix.A).map(
+                                            (item) => {
+                                                console.log(item);
+                                                return (
+                                                    <div>
+                                                        {item[0]} : {item[1]}
+                                                    </div>
+                                                );
+                                            }
+                                        )}
+                                    </div> */}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

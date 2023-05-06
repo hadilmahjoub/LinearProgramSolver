@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -77,27 +78,27 @@ const PL9 = () => {
             key: "2",
             offre_usine: "Cout fixe",
             usine1: (
-                <Form.Item name="form-11-1" initialValue={300}>
+                <Form.Item name="form-11-1" initialValue={35000}>
                     <Input />
                 </Form.Item>
             ),
             usine2: (
-                <Form.Item name="form-11-2" initialValue={200}>
+                <Form.Item name="form-11-2" initialValue={45000}>
                     <Input />
                 </Form.Item>
             ),
             usine3: (
-                <Form.Item name="form-11-3" initialValue={300}>
+                <Form.Item name="form-11-3" initialValue={40000}>
                     <Input />
                 </Form.Item>
             ),
             usine4: (
-                <Form.Item name="form-11-4" initialValue={200}>
+                <Form.Item name="form-11-4" initialValue={42000}>
                     <Input />
                 </Form.Item>
             ),
             usine5: (
-                <Form.Item name="form-11-5" initialValue={400}>
+                <Form.Item name="form-11-5" initialValue={40000}>
                     <Input />
                 </Form.Item>
             ),
@@ -226,17 +227,17 @@ const PL9 = () => {
             key: "6",
             usine: "Cout fixe",
             depot1: (
-                <Form.Item name="form-12-1" initialValue={700}>
+                <Form.Item name="form-12-1" initialValue={40000}>
                     <Input />
                 </Form.Item>
             ),
             depot2: (
-                <Form.Item name="form-12-2" initialValue={600}>
+                <Form.Item name="form-12-2" initialValue={20000}>
                     <Input />
                 </Form.Item>
             ),
             depot3: (
-                <Form.Item name="form-12-3" initialValue={500}>
+                <Form.Item name="form-12-3" initialValue={60000}>
                     <Input />
                 </Form.Item>
             ),
@@ -377,22 +378,22 @@ const PL9 = () => {
             key: "1",
             quantite: "Quantité requise",
             client1: (
-                <Form.Item name="form-10-1" initialValue={40}>
+                <Form.Item name="form-10-1" initialValue={200}>
                     <Input />
                 </Form.Item>
             ),
             client2: (
-                <Form.Item name="form-10-2" initialValue={80}>
+                <Form.Item name="form-10-2" initialValue={300}>
                     <Input />
                 </Form.Item>
             ),
             client3: (
-                <Form.Item name="form-10-3" initialValue={90}>
+                <Form.Item name="form-10-3" initialValue={150}>
                     <Input />
                 </Form.Item>
             ),
             client4: (
-                <Form.Item name="form-10-4" initialValue={50}>
+                <Form.Item name="form-10-4" initialValue={250}>
                     <Input />
                 </Form.Item>
             ),
@@ -418,14 +419,14 @@ const PL9 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             usine_depot: [],
             depot_client: [],
             offre_usine: [],
-            cout_usine: [],
-            cout_depot: [],
+
             quantite_client: [],
+            cout_fixe: [],
         };
 
         const u1_dep = [];
@@ -436,55 +437,57 @@ const PL9 = () => {
         const dep1_client = [];
         const dep2_client = [];
         const dep3_client = [];
+        const cout_usine = [];
+        const cout_depot = [];
 
         for (const [key, value] of Object.entries(values)) {
             //todo to complete-----------------
             if (key.includes("form1")) {
-                request.offre_usine.push(value);
+                request.offre_usine.push(parseFloat(value));
             }
 
             if (key.includes("form2")) {
-                u1_dep.push(value);
+                u1_dep.push(parseFloat(value));
             }
 
             if (key.includes("form3")) {
-                u2_dep.push(value);
+                u2_dep.push(parseFloat(value));
             }
 
             if (key.includes("form4")) {
-                u3_dep.push(value);
+                u3_dep.push(parseFloat(value));
             }
 
             if (key.includes("form5")) {
-                u4_dep.push(value);
+                u4_dep.push(parseFloat(value));
             }
 
             if (key.includes("form6")) {
-                u5_dep.push(value);
+                u5_dep.push(parseFloat(value));
             }
 
             if (key.includes("form7")) {
-                dep1_client.push(value);
+                dep1_client.push(parseFloat(value));
             }
 
             if (key.includes("form8")) {
-                dep2_client.push(value);
+                dep2_client.push(parseFloat(value));
             }
 
             if (key.includes("form9")) {
-                dep3_client.push(value);
+                dep3_client.push(parseFloat(value));
             }
 
             if (key.includes("form-10")) {
-                request.quantite_client.push(value);
+                request.quantite_client.push(parseFloat(value));
             }
 
             if (key.includes("form-11")) {
-                request.cout_usine.push(value);
+                cout_usine.push(parseFloat(value));
             }
 
             if (key.includes("form-12")) {
-                request.cout_depot.push(value);
+                cout_depot.push(parseFloat(value));
             }
         }
 
@@ -493,14 +496,23 @@ const PL9 = () => {
         request.usine_depot.push(u3_dep);
         request.usine_depot.push(u4_dep);
         request.usine_depot.push(u5_dep);
+        cout_usine.push(...cout_depot);
+        request.cout_fixe.push(cout_usine);
 
         request.depot_client.push(dep1_client);
         request.depot_client.push(dep2_client);
         request.depot_client.push(dep3_client);
 
         console.log(request);
+
+        const final_result = await PLservice(request, "pl9");
+
+        setResult(final_result.res9);
+
+        console.log(final_result);
     };
 
+    const [result, setResult] = useState(null);
     return (
         <Collapse className="collpase">
             <Panel header={title}>
@@ -542,6 +554,33 @@ const PL9 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    {Object.entries(result).map((item) => {
+                                        return typeof item[1] === "object" ? (
+                                            <div>
+                                                {Object.values(item[1]).map(
+                                                    (e) => {
+                                                        // console.log(e);
+                                                        return <div>{e}</div>;
+                                                    }
+                                                )}
+                                                <br />
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <h2>{item[0]}</h2>
+                                                {item[1]}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

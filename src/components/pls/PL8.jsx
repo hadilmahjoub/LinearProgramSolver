@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -627,7 +628,7 @@ const PL8 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
             path: [],
         };
@@ -645,39 +646,39 @@ const PL8 = () => {
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                v1.push(value);
+                v1.push(parseFloat(value));
             }
 
             if (key.includes("form2")) {
-                v2.push(value);
+                v2.push(parseFloat(value));
             }
             if (key.includes("form3")) {
-                v3.push(value);
+                v3.push(parseFloat(value));
             }
 
             if (key.includes("form4")) {
-                v4.push(value);
+                v4.push(parseFloat(value));
             }
             if (key.includes("form5")) {
-                v5.push(value);
+                v5.push(parseFloat(value));
             }
 
             if (key.includes("form6")) {
-                v6.push(value);
+                v6.push(parseFloat(value));
             }
             if (key.includes("form7")) {
-                v7.push(value);
+                v7.push(parseFloat(value));
             }
 
             if (key.includes("form8")) {
-                v8.push(value);
+                v8.push(parseFloat(value));
             }
             if (key.includes("form9")) {
-                v9.push(value);
+                v9.push(parseFloat(value));
             }
 
             if (key.includes("form-10")) {
-                v10.push(value);
+                v10.push(parseFloat(value));
             }
         }
 
@@ -692,10 +693,13 @@ const PL8 = () => {
         request.path.push(v9);
         request.path.push(v10);
 
-        console.log(request.path);
+        const final_result = await PLservice(request, "pl8");
+        setResult(final_result.res8);
 
-        console.log(request);
+        console.log(final_result);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -723,6 +727,27 @@ const PL8 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    <h2>Solution optimale</h2>
+                                    <div>{result[0]}</div>
+                                    <div>{result[1]}</div>
+                                    <div>{result[2]}</div>
+                                    <br />
+
+                                    <h2>Meilleur chemin</h2>
+                                    <div>{result["Meilleur chemin"]}</div>
+                                    <br />
+
+                                    <h2>Coût total</h2>
+                                    <div>{result["Coût total"]}</div>
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

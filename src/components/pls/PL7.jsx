@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse, Table, Button, Form, Input } from "antd";
 import "../CustomCollapse.css";
+import { PLservice } from "../../service/plservice";
 
 const { Panel } = Collapse;
 
@@ -333,14 +334,8 @@ const PL7 = () => {
         },
     ];
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const request = {
-            // e1: [],
-            // e2: [],
-            // e3: [],
-            // e4: [],
-            // e5: [],
-            // e6: [],
             C: [],
         };
 
@@ -353,25 +348,25 @@ const PL7 = () => {
 
         for (const [key, value] of Object.entries(values)) {
             if (key.includes("form1")) {
-                e1.push(value);
+                e1.push(parseFloat(value));
             }
 
             if (key.includes("form2")) {
-                e2.push(value);
+                e2.push(parseFloat(value));
             }
             if (key.includes("form3")) {
-                e3.push(value);
+                e3.push(parseFloat(value));
             }
 
             if (key.includes("form4")) {
-                e4.push(value);
+                e4.push(parseFloat(value));
             }
             if (key.includes("form5")) {
-                e5.push(value);
+                e5.push(parseFloat(value));
             }
 
             if (key.includes("form6")) {
-                e6.push(value);
+                e6.push(parseFloat(value));
             }
         }
 
@@ -382,10 +377,17 @@ const PL7 = () => {
         request.C.push(e5);
         request.C.push(e6);
 
-        console.log(request.C);
+        // console.log(request.C);
 
-        console.log(request);
+        // console.log(request);
+
+        const final_result = await PLservice(request, "pl7");
+        setResult(final_result.res7);
+
+        console.log(final_result);
     };
+
+    const [result, setResult] = useState(null);
 
     return (
         <Collapse className="collpase">
@@ -413,6 +415,33 @@ const PL7 = () => {
                             <Form.Item>
                                 <Button htmlType="reset">Reset</Button>
                             </Form.Item>
+                        </div>
+
+                        <div className="solution">
+                            {result != null ? (
+                                <div>
+                                    <h2>Solution optimale</h2>
+                                    {Object.entries(result).map(
+                                        (item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    {item[0] !=
+                                                    "Valeur objective" ? (
+                                                        <div>{item[1]}</div>
+                                                    ) : (
+                                                        <div>
+                                                            <br /><h2>{item[0]}</h2>
+                                                            {item[1]}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </Form>
                 </div>

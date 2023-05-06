@@ -97,3 +97,8 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     color: white !important;
 }
+
+.col {
+    display: flex;
+    justify-content: space-evenly;
+}

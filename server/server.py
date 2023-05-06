@@ -6,6 +6,10 @@ from controllers.PL2 import PL2
 from controllers.PL3 import PL3
 from controllers.PL4 import PL4
 from controllers.PL5 import PL5
+from controllers.PL6 import PL6
+from controllers.PL7 import PL7
+from controllers.PL8 import PL8
+from controllers.PL9 import PL9
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -113,6 +117,70 @@ def pl5():
     pl5 = PL5(offres=offres,demandes=demandes,couts=couts,penalites=penalites)
     response = {
         "res5":pl5.run()
+    }
+    return jsonify(response)
+
+
+@app.route('/pl6', methods = ['POST'])
+@cross_origin()
+def pl6():
+    data = request.get_json()
+    capacite = data["capacite_usine"]
+    demande = data ["demande_client"]
+    quantite_transport = data["quantite_trans"][0]
+    costs = data["matrice"]
+
+    pl6 = PL6(capacite=capacite,demande=demande,quantite_transport=quantite_transport,costs=costs)
+    response = {
+        "res6":pl6.run()
+    }
+    return jsonify(response)
+
+
+@app.route('/pl7', methods = ['POST'])
+@cross_origin()
+def pl7():
+    data = request.get_json()
+    print(data)
+    costs = data["C"]
+
+    pl7 = PL7(costs=costs)
+    response = {
+        "res7":pl7.run()
+    }
+    return jsonify(response)
+
+
+@app.route('/pl8', methods = ['POST'])
+@cross_origin()
+def pl8():
+    data = request.get_json()
+    # print(data)
+    costs = data["path"]
+
+    pl8 = PL8(costs=costs)
+    response = {
+        "res8":pl8.run()
+    }
+    return jsonify(response)
+
+
+
+@app.route('/pl9', methods = ['POST'])
+@cross_origin()
+def pl9():
+    data = request.get_json()
+    
+    # Paramètres du problème par défaut
+    capacite_prod = data["offre_usine"]
+    prix_usinedepot = data["usine_depot"]
+    prix_depotclient = data["depot_client"]
+    demande = data["quantite_client"]
+    frais = data["cout_fixe"]
+
+    pl9 = PL9(capacite_prod=capacite_prod,prix_usinedepot=prix_usinedepot,prix_depotclient=prix_depotclient,demande=demande,frais=frais)
+    response = {
+        "res9":pl9.run()
     }
     return jsonify(response)
 
