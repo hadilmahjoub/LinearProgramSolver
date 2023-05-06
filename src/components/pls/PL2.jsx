@@ -205,7 +205,21 @@ const PL2 = () => {
                             {result != null ? (
                                 <div>
                                     <h2>Mixage optimal</h2>
-                                    {Object.entries(result).map(
+                                    {console.log(Object.entries(result)[0])}
+                                    <div>
+                                        {Object.entries(result)[0][0]} :{" "}
+                                        {Object.entries(result)[0][1]}
+                                    </div>
+                                    <div>
+                                        {Object.entries(result)[2][0]} :{" "}
+                                        {Object.entries(result)[2][1]}
+                                    </div>
+
+                                    <br />
+                                    <h2>{Object.entries(result)[1][0]}</h2>
+                                    <div>{Object.entries(result)[1][1]}</div>
+
+                                    {/* {Object.entries(result).map(
                                         (item, index) => {
                                             return (
                                                 <div key={index}>
@@ -213,7 +227,7 @@ const PL2 = () => {
                                                 </div>
                                             );
                                         }
-                                    )}
+                                    )} */}
                                 </div>
                             ) : (
                                 <div></div>
