@@ -339,6 +339,8 @@ const PL5 = () => {
         <Collapse className="collpase">
             <Panel header={title}>
                 <p>{enonce}</p>
+                <br />
+                <h2 className="warning">Veuillez donner des valeurs positives</h2>
                 <div className="tabs-container">
                     <Form
                         name="basic"
@@ -380,9 +382,7 @@ const PL5 = () => {
                         <div className="solution">
                             {result != null ? (
                                 <div>
-                                    {
-                                        console.log(result)
-                                    }
+                                    {console.log(result)}
                                     {Object.entries(result).map(
                                         (item, index) => {
                                             console.log(item[1]);

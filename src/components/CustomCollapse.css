@@ -102,3 +102,8 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.warning {
+    text-align: center;
+    color: red;
+}

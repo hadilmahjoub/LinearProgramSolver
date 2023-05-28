@@ -123,6 +123,10 @@ const PL3 = () => {
         <Collapse className="collpase">
             <Panel header={title}>
                 <p>{enonce}</p>
+                <br />
+                <h2 className="warning">
+                    Veuillez donner des valeurs positives
+                </h2>
                 <div className="tabs-container">
                     <Form
                         name="basic"
@@ -159,13 +163,10 @@ const PL3 = () => {
                                     {Object.entries(result).map(
                                         (item, index) => {
                                             return (
-                                                <div key={index}>
-                                                    {item}
-                                                </div>
+                                                <div key={index}>{item}</div>
                                             );
                                         }
                                     )}
-                                    
                                 </div>
                             ) : (
                                 <div></div>

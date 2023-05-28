@@ -18,25 +18,24 @@ class PL2:
         chauffage = model.addVar(lb=0, ub=1, name="chauffage")
 
         # Fonction objectif : maximiser le profit total
-        model.setObjective((self.prix_vente[0] - self.frais_marketing[0]) * gazoline + (self.prix_vente[1] - self.frais_marketing[1]) * chauffage, gp.GRB.MAXIMIZE)
+        model.setObjective((self.prix_vente[0] - self.frais_marketing[0]) * gazoline 
+                           + (self.prix_vente[1] - self.frais_marketing[1]) * chauffage, gp.GRB.MAXIMIZE)
 
         # Contraintes
         d1 = model.addVar(0, name="denominateur1")
         d2 = model.addVar(0, name="denominateur2")
-        model.addConstr( d1 == 1 / self.nb_barils[0]*gazoline + self.nb_barils[1]*chauffage )
-        model.addConstr( d2 == 1 / self.nb_barils[0]*(1-gazoline) + self.nb_barils[1]*(1-chauffage) )
+        model.addConstr( d1 == 1 / self.nb_barils[0]*gazoline 
+                        + self.nb_barils[1]*chauffage )
+        model.addConstr( d2 == 1 / self.nb_barils[0]*(1-gazoline) 
+                        + self.nb_barils[1]*(1-chauffage) )
 
-        model.addConstr( ( (self.niveau_qualite[0]*self.nb_barils[0]*gazoline + self.niveau_qualite[1]*self.nb_barils[1]*chauffage) * d1 ) >= self.min_qualite[0], name="c1")
-        model.addConstr( ( (self.niveau_qualite[0]*self.nb_barils[0]*(1-gazoline) + self.niveau_qualite[1]*self.nb_barils[1]*(1-chauffage)) * d2) >= self.min_qualite[1], name="c2")
+        model.addConstr( ( (self.niveau_qualite[0]*self.nb_barils[0]*gazoline 
+                            + self.niveau_qualite[1]*self.nb_barils[1]*chauffage) * d1 ) >= self.min_qualite[0], name="c1")
+        model.addConstr( ( (self.niveau_qualite[0]*self.nb_barils[0]*(1-gazoline) 
+                            + self.niveau_qualite[1]*self.nb_barils[1]*(1-chauffage)) * d2) >= self.min_qualite[1], name="c2")
 
         # Resolution
         model.optimize()
-
-        # Affichage des résultats
-        # resultat = "Mixage optimal :"
-        # resultat += "\nGazoline : "+ str(gazoline.x)
-        # resultat += "\nPétrole de chauffage : "+ str(chauffage.x)
-        # resultat += "\nProfit total : "+ str(model.objVal) + "DT"
 
         resultat = {
             "Gazoline": str(gazoline.x),

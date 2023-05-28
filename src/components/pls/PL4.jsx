@@ -311,6 +311,10 @@ const PL4 = () => {
         <Collapse className="collpase">
             <Panel header={title}>
                 <p>{enonce}</p>
+                <br />
+                <h2 className="warning">
+                    Veuillez donner des valeurs positives
+                </h2>
                 <div className="tabs-container">
                     <Form
                         name="basic"
@@ -353,7 +357,8 @@ const PL4 = () => {
                         <div className="solution">
                             {result != null ? (
                                 <div>
-                                    <h2>Solution optimale</h2><br />
+                                    <h2>Solution optimale</h2>
+                                    <br />
                                     <h3>MOIS 1</h3>
                                     {Object.entries(result.mois1).map(
                                         (item, index) => (

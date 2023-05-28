@@ -67,7 +67,8 @@ class PL3:
 
         model = gp.Model("PL3")
 
-        # les variables de décision représentant les employés prenant deux jours de congés à partir du jour i
+        # les variables de décision représentant les employés prenant 
+        # deux jours de congés à partir du jour i
         x=[]
         for i in range(7):
             x.append(model.addVar(lb = 0 ,vtype = gp.GRB.INTEGER, name='x'+str(i)))

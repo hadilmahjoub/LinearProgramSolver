@@ -8,43 +8,6 @@ class PL7:
         self.num_projects = len(costs[0])
 
     def run(self):
-        # # Creation du model
-        # model = gp.Model("PL7")
-
-        # # Variables de decision
-        # x = model.addVars(self.num_companies, self.num_projects, vtype=gp.GRB.BINARY, name="x")
-
-        # # Fonction d'objective
-        # model.setObjective(gp.quicksum(self.costs[i][j] * x[i, j] for i in range(self.num_companies) for j in range(self.num_projects) if not np.isnan(self.costs[i][j])), gp.GRB.MINIMIZE)
-
-        # # Add constraints
-        # # Une seule entreprise par projet
-        # for j in range(self.num_projects):
-        #     model.addConstr(gp.quicksum(x[i, j] for i in range(self.num_companies) if not np.isnan(self.costs[i][j])) == 1)
-        # # Au max 2 projets par entreprise
-        # for i in range(self.num_companies):
-        #     model.addConstr(gp.quicksum(x[i, j] for j in range(self.num_projects) if not np.isnan(self.costs[i][j])) <= 2)
-
-        # # Optimisation
-        # model.optimize()
-
-        # # Affichage des résultats
-        # if model.status == gp.GRB.Status.OPTIMAL:
-        #     resultat = ""
-        #     assignment = []
-        #     for i in range(self.num_companies):
-        #         for j in range(self.num_projects):
-        #             if not (self.costs[i][j] == 0) and x[i, j].x > 0.5:
-        #                 assignment.append((i+1, j+1))
-        #     if assignment:
-        #         for i, j in assignment:
-        #             resultat += f"Assigner le project {j} a l'entreprise {i}\n"
-        #         resultat += "Valeur objective:"+ str(model.objVal)
-        #     else:
-        #         resultat += "Aucune solution trouve."
-        #     return resultat
-
-
         # Create model
         m = gp.Model('Project_Selection')
 
@@ -56,7 +19,8 @@ class PL7:
                     x[i, j] = m.addVar(vtype=gp.GRB.BINARY, name=f"x_{i}_{j}")
 
         # Set objective function
-        obj = gp.quicksum(self.costs[i-1][j-1] * x[i, j] for i in range(1, 7) for j in range(1, 9) if (i, j) in x)
+        obj = gp.quicksum(self.costs[i-1][j-1] * x[i, j] for i in range(1, 7) 
+                          for j in range(1, 9) if (i, j) in x)
         m.setObjective(obj, gp.GRB.MINIMIZE)
 
         # Add constraints

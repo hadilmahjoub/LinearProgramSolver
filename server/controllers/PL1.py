@@ -1,7 +1,9 @@
 import gurobipy as gp
 
 class PL1:
-    def __init__(self,Rendement,Prix_vente,main_doeuvre,Temps_machine,Eau,Salaire_annuel,Frais_gestion,zone_agricole, prix_main_doeuvre,eau_dirrigation,heure_machine, cout_heure_machine, cout_eau):
+    def __init__(self,Rendement,Prix_vente,main_doeuvre,Temps_machine,Eau,Salaire_annuel,
+                 Frais_gestion,zone_agricole, prix_main_doeuvre,eau_dirrigation,
+                 heure_machine, cout_heure_machine, cout_eau):
         self.Rendement = Rendement
         self.Prix_vente = Prix_vente
         self.main_doeuvre = main_doeuvre
@@ -46,7 +48,6 @@ class PL1:
         # Affichage des resultats
         resultat = {}
         for i,v in enumerate(model.getVars()):
-            # resultat += '%s: %g\n--------------\n' % (self.names[i], v.x)
             resultat[self.names[i]] = v.x
         resultat["Profit total "] = str(model.objVal) + " DT"
 

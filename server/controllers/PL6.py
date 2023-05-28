@@ -47,18 +47,6 @@ class PL6:
         model.optimize()
 
         result = {}
-                
-        # # create matrix that takes 7*7 values of v.x
-        # matrix = np.zeros((7,7),dtype=int)
-        # tab = []
-        # for i,v in enumerate(model.getVars()):
-        #     tab.append(v.x)
-
-        # # fill the matrix with the values of tab
-        # for i in range(7):
-        #     for j in range(7):
-        #         if tab[i*7+j] > 0:
-        #             matrix[i][j] = int(tab[i*7+j])
 
         tab = []
         for i,v in enumerate(model.getVars()):

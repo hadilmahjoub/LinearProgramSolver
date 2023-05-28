@@ -393,6 +393,10 @@ const PL7 = () => {
         <Collapse className="collpase">
             <Panel header={title}>
                 <p>{enonce}</p>
+                <br />
+                <h2 className="warning">
+                    Veuillez donner des valeurs positives
+                </h2>
                 <div className="tabs-container">
                     <Form
                         name="basic"
@@ -430,7 +434,8 @@ const PL7 = () => {
                                                         <div>{item[1]}</div>
                                                     ) : (
                                                         <div>
-                                                            <br /><h2>{item[0]}</h2>
+                                                            <br />
+                                                            <h2>{item[0]}</h2>
                                                             {item[1]}
                                                         </div>
                                                     )}

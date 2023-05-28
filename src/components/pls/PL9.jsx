@@ -517,6 +517,8 @@ const PL9 = () => {
         <Collapse className="collpase">
             <Panel header={title}>
                 <p>{enonce}</p>
+                <br />
+                <h2 className="warning">Veuillez donner des valeurs positives</h2>
                 <div className="tabs-container">
                     <Form
                         name="basic"
